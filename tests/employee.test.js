@@ -29,16 +29,15 @@ describe("Employee", () => {
     {
         it("Should build with name when provided name", () => {
             //Arrange
-            //create new employee obj
             // const name = "Tiffany";
 
             //act
-            //call getName method and store result
             const newPerson = new Employee(employee.name, employee.id, employee.email)
             const result = newPerson.getName();
+            console.log(result);
+
 
             //assert
-            //the result is equal to an expected value
             expect(result).toBe(employee.name);
         });
     });
@@ -47,17 +46,14 @@ describe("Employee", () => {
     {
         it("Should build with ID when provided ID", () => {
             //Arrange
-            // create new employee obj
             // const id = 45;
 
             //act
-            //call getID method and store result
             const newPerson = new Employee(employee.name, employee.id, employee.email);
             const result = newPerson.getID();
             console.log(result);
 
             //assert
-            //the result is equal to an expected value
             expect(result).toBe(employee.id);
         });
     });
@@ -66,17 +62,14 @@ describe("Employee", () => {
     {
         it("Should build with email address when provided email address", () => {
             //Arrange
-            //create new employee obj
             // const email = "email@gmail.com";
 
             //Act
-            //call getEmail method and store result
             const newPerson = new Employee(employee.name, employee.id, employee.email);
             const result = newPerson.getEmail();
             console.log(result);
 
             //assert
-            //the result is equal to an expected value
             expect(result).toBe(employee.email)
         });
     });
@@ -85,15 +78,12 @@ describe("Employee", () => {
     {
         it("Should build with role when provided role", () => {
             //Arrange
-            //create new employee obj
             // const role = "Employee";
 
             //act
-            //call getRole method and store result
             const newPerson = new Employee(employee.name, employee.id, employee.email);
 
             //assert
-            //the result is equal to an expected value
             expect(newPerson.getRole()).toEqual('Employee');
         });
     });
