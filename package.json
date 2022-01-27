@@ -1,0 +1,29 @@
+{
+  "name": "teammates",
+  "version": "1.0.0",
+  "description": "A webpage that displays my team's basic info",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest --verbose test/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Morgoth27/teammates.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Morgoth27/teammates/issues"
+  },
+  "homepage": "https://github.com/Morgoth27/teammates#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0"
+  },
+  "devDependencies": {
+    "jest": "^27.4.7"
+  }
+}

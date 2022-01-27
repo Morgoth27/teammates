@@ -1,39 +1,128 @@
-const express = require('express');
 const inquirer = require('inquirer');
-const jest = require('jest')
-const termData = require('./terms.json');
+
+const Manager = require('./lib/manager');
+const Intern = require('./lib/intern');
+const Engineer = require('./lib/engineer');
+const Employee = require('./lib/employee')
+const fs = require('fs');
+const path  = require('path')
+
+const pageTemplate = require('./src/page-template');
 
 const PORT = 3001;
+const employees = [];
 
-const app = express();
 
-// GET route to get all of the terms
-app.get('/api/terms', (req, res) => res.json(termData));
+var questions = [
 
-// GET route that returns any specific term
-app.get('/api/terms/:term', (req, res) => {
-  // Coerce the specific search term to lowercase
-  const requestedTerm = req.params.term.toLowerCase();
+    {
+        name: "name",
+        message: "Name:",
+        type: "input",
+    },
+    {
+        name: "ID",
+        message: "ID:",
+        type: "input",
+    },
+    {
+        name: "email",
+        message: "Email:",
+        type: "input",
+    }];
 
-  // Iterate through the terms name to check if it matches `req.params.term`
-  for (let i = 0; i < termData.length; i++) {
-    if (requestedTerm === termData[i].term.toLowerCase()) {
-      return res.json(termData[i]);
+var managerQuestions = [
+    {
+        name: "officeNumber",
+        message: "What is the manager's office number?",
+        type: "input",
     }
-  }
+]
 
-  // Return a message if the term doesn't exist in our DB
-  return res.json('No match found');
+var internQuestion = [
+    {
+        name: "school",
+        message: "What is the intern's school?",
+        type: "input",
+    }
+]
+
+var engineerQuestion = [
+    {
+        name: "gitHub",
+        message: "What is the engineer's GitHub?",
+        type: "input",
+    }
+]
+
+var nextEmployee = [
+    {
+        name: "role",
+        message: "What type of team member would you like to add?",
+        type: "list",
+        choices: ["Engineer", "Intern", "None at this time"]
+    }
+]
+
+
+function init() {
+     questions = questions.concat(managerQuestions)
+inquirer
+    .prompt(questions)
+    .then((answers) => {
+        employees.push(new Manager(answers.name, answers.ID, answers.email, answers.officeNumber));
+        nextAction()
 });
+}
 
-// Fallback route for when a user attempts to visit routes that don't exist
-app.get('*', (req, res) =>
-  res.send(
-    `Make a GET request using Insomnia to <a href="http://localhost:${PORT}/api/terms">http://localhost:${PORT}/api/terms</a>`
-  )
-);
 
-// Listen for connections
-app.listen(PORT, () =>
-  console.info(`Example app listening at http://localhost:${PORT} 🚀`)
-);
+
+function genEng() {
+    questions  = questions.concat(engineerQuestion);
+    inquirer
+        .prompt(questions)
+        .then((answers) => {
+            employees.push(new Engineer(answers.name, answers.ID, answers.email, answers.gitHub));
+
+            nextAction();
+});
+}
+
+
+function genIntern() {
+    questions  = questions.concat(internQuestion);
+    inquirer
+        .prompt(questions)
+        .then((answers) => {
+            employees.push(new Intern(answers.name, answers.ID, answers.email, answers.school));
+
+            nextAction();
+});
+}
+
+function nextAction() {
+    questions = questions.filter((element, index) => index < questions.length - 1)
+    inquirer.prompt(nextEmployee)
+    .then((answers) => {
+        switch (answers.role) {
+            case 'Engineer':
+                genEng();
+                break;
+            case 'Intern': 
+                genIntern();
+                break;
+            default:
+                buildTemplate()
+        }
+    })
+}
+
+function buildTemplate() {
+    if(!fs.existsSync(path.resolve(__dirname, 'dist'))) {
+        fs.mkdirSync(path.resolve(__dirname, 'dist'))
+    }
+
+    fs.writeFileSync(path.join(path.resolve(__dirname, 'dist'), 'team.html'),pageTemplate(employees), 'utf-8')
+}
+
+init();

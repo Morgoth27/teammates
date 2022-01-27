@@ -1,0 +1,1 @@
+const manager = require('../js/manager.js');
