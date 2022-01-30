@@ -1,4 +1,6 @@
 # teammates
+
+## Description
 A webpage that displays my team's basic info
 
 ## Acceptance Criteria
@@ -22,3 +24,8 @@ THEN I am prompted to enter the intern’s name, ID, email, and school, and I am
 WHEN I decide to finish building my team
 THEN I exit the application, and the HTML is generated
 ```
+
+-------------------------------
+## Video of application in use:
+
+[![Click to watch video](./img/screengrab_thumbnail.png)](https://watch.screencastify.com/v/fJVMBKCFeMSg2hy397Mj)

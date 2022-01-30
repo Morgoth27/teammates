@@ -51,7 +51,7 @@ const genTeam = team => {
                 <div class ="card-body">
                     <ul class = "list-group list-group-flush">
                         <li class = "list-group-item list-group-item-action list-group-item-primary">ID: ${intern.getID()}</li>
-                        <li class = "list-group-item list-group-item-action list-group-item-primary">Email: <a href="mailto:">${intern.getEmail()}'</a></li>
+                        <li class = "list-group-item list-group-item-action list-group-item-primary">Email: <a href="mailto:">${intern.getEmail()}</a></li>
                         <li class = "list-group-item list-group-item-action list-group-item-primary">School: ${intern.getSchool()}</li>
                     </ul>
                 </div>
