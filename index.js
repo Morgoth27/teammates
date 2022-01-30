@@ -29,6 +29,11 @@ var questions = [
         name: "email",
         message: "Email:",
         type: "input",
+        validate: function(email)
+        {
+            // Regex mail check (return true if valid email format)
+            return /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(email);
+        }
     }];
 
 var managerQuestions = [
