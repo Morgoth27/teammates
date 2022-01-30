@@ -6,12 +6,12 @@ const genTeam = team => {
             <div class= "card text-center text-white bg-secondary mb-3">
                 <div class = "card-header">
                     <h2 class = card-title">${manager.getName()}</h2>
-                    <h3 class = card-title"><span class="glyphicon glyphicon-user"></span>${manager.getRole()}</h3>
+                    <h3 class = card-title">${manager.getRole()}</h3>
                 </div>
                 <div class ="card-body">
                     <ul class = "list-group list-group-flush">
                         <li class = "list-group-item list-group-item-action list-group-item-secondary">ID: ${manager.getID()}</li>
-                        <li class= "list-group-item list-group-item-action list-group-item-secondary"><a href="mailto:">Email:${manager.getEmail()}</a></li>
+                        <li class= "list-group-item list-group-item-action list-group-item-secondary">Email: <a href="mailto:">${manager.getEmail()}</a></li>
                         <li class = "list-group-item list-group-item-action list-group-item-secondary">Office #: ${manager.getOfficeNumber()}</li>
                     </ul>
                 </div>
@@ -26,7 +26,7 @@ const genTeam = team => {
             <div class= "card text-center text-white bg-danger mb-3">
                 <div class = "card-header">
                     <h2 class = card-title">${engineer.getName()}</h2>
-                    <h3 class = card-title"><span class="glyphicon glyphicon-hdd"></span>${engineer.getRole()}</h3>
+                    <h3 class = card-title">${engineer.getRole()}</h3>
                 </div>
                 <div class ="card-body">
                     <ul class = "list-group list-group-flush">
@@ -46,7 +46,7 @@ const genTeam = team => {
             <div class= "card text-center text-white bg-primary mb-3">
                 <div class = "card-header">
                     <h2 class = card-title">${intern.getName()}</h2>
-                    <h3 class = card-title"><span class="glyphicon glyphicon-education"></span>${intern.getRole()}</h3>
+                    <h3 class = card-title">${intern.getRole()}</h3>
                 </div>
                 <div class ="card-body">
                     <ul class = "list-group list-group-flush">
